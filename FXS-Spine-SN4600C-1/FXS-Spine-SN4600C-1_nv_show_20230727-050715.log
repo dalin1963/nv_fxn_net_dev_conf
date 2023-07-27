@@ -1,0 +1,190 @@
+spawn ssh -q -o StrictHostKeyChecking=no cumulus@FXS-Spine-SN4600C-1
+cumulus@fxs-spine-sn4600c-1's password: 
+Linux FXS-Spine-SN4600C-1 5.10.0-cl-1-amd64 #1 SMP Debian 5.10.130-1+cl5.2.0u5 (2022-07-29) x86_64
+
+Welcome to NVIDIA Cumulus (R) Linux (R)
+
+Last login: Thu Jul 27 13:01:17 2023 from 172.24.240.241
+cumulus@FXS-Spine-SN4600C-1:mgmt:~$ nv show
+                              operational  applied              description
+----------------------------  -----------  -------------------  ----------------------------------------------------------------------
+[acl]                                                           ACL rules
+bridge
+  [domain]                                 br_default           Bridge domains
+evpn
+  enable                                   off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+[interface]                                bond_leaf1           Interfaces
+[interface]                                bond_leaf10
+[interface]                                bond_leaf11
+[interface]                                bond_leaf12
+[interface]                                bond_leaf13
+[interface]                                bond_leaf14
+[interface]                                bond_leaf15
+[interface]                                bond_leaf16
+[interface]                                bond_leaf17
+[interface]                                bond_leaf18
+[interface]                                bond_leaf19
+[interface]                                bond_leaf2
+[interface]                                bond_leaf20
+[interface]                                bond_leaf21
+[interface]                                bond_leaf22
+[interface]                                bond_leaf23
+[interface]                                bond_leaf24
+[interface]                                bond_leaf25
+[interface]                                bond_leaf26
+[interface]                                bond_leaf27
+[interface]                                bond_leaf28
+[interface]                                bond_leaf29
+[interface]                                bond_leaf3
+[interface]                                bond_leaf30
+[interface]                                bond_leaf31
+[interface]                                bond_leaf32
+[interface]                                bond_leaf33
+[interface]                                bond_leaf34
+[interface]                                bond_leaf35
+[interface]                                bond_leaf36
+[interface]                                bond_leaf37
+[interface]                                bond_leaf38
+[interface]                                bond_leaf39
+[interface]                                bond_leaf4
+[interface]                                bond_leaf40
+[interface]                                bond_leaf41
+[interface]                                bond_leaf42
+[interface]                                bond_leaf43
+[interface]                                bond_leaf44
+[interface]                                bond_leaf45
+[interface]                                bond_leaf46
+[interface]                                bond_leaf47
+[interface]                                bond_leaf48
+[interface]                                bond_leaf49
+[interface]                                bond_leaf5
+[interface]                                bond_leaf50
+[interface]                                bond_leaf51
+[interface]                                bond_leaf52
+[interface]                                bond_leaf53
+[interface]                                bond_leaf54
+[interface]                                bond_leaf6
+[interface]                                bond_leaf7
+[interface]                                bond_leaf8
+[interface]                                bond_leaf9
+[interface]                                bond_up
+[interface]                                eth0
+[interface]                                lo
+[interface]                                peerlink
+[interface]                                peerlink.4094
+[interface]                                vlan1
+[interface]                                vlan240
+mlag
+  enable                                   on                   Turn the feature 'on' or 'off'.  The default is 'off'.
+  debug                                    off                  Enable MLAG debugging
+  init-delay                               180                  The delay, in seconds, before bonds are brought up.
+  mac-address                              44:38:39:ff:00:10    Override anycast-mac and anycast-id
+  peer-ip                                  linklocal            Peer Ip Address
+  priority                                 0                    Mlag Priority
+  [backup]                                 172.25.224.2         Set of MLAG backups
+nve
+  vxlan
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+platform
+  hardware
+    [component]                                                 Set of components making up the platform.
+qos
+  roce
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+router
+  adaptive-routing
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+  bgp
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+  igmp
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+  [nexthop-group]                                               Nexthops
+  ospf
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+  pbr
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+  pim
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+  policy
+    [as-path-list]                                              AS Path lists
+    [community-list]                                            Community lists
+    [ext-community-list]                                        Extended Community lists
+    [large-community-list]                                      Large Community lists
+    [prefix-list]                                               Prefix list rules
+    [route-map]                                                 Collection of Route Maps
+  vrr
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+  vrrp
+    enable                                 off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+service
+  [dhcp-relay]                                                  DHCP-relays
+  [dhcp-relay6]                                                 DHCP-relays
+  [dhcp-server]                                                 DHCP-servers
+  [dhcp-server6]                                                DHCP-servers6
+  [dns]                                                         collection of DNS
+  lldp
+    dot1-tlv                               off                  Enable dot1 TLV advertisements on enabled ports
+    tx-hold-multiplier                     4                    < TTL of transmitted packets is calculated by multiplying the tx-in...
+    tx-interval                            30                   change transmit delay
+  [ntp]                                                         NTPs
+  [ptp]                                    1                    Collection of PTP instances
+  [syslog]                                                      collection of syslog
+system
+  config
+    apply
+      overwrite                            all                  Determine which files can be overwritten during an apply.
+      [ignore]                                                  Set of files to ignore during config apply operations.
+  control-plane
+    [policer]                                                   Policers
+    [trap]                                                      Traps
+  forwarding
+    ecmp-hash
+      destination-ip                       on                   Destination IPv4/IPv6 Address
+      destination-port                     on                   TCP/UDP destination port
+      gtp-teid                             off                  GTP-U TEID
+      ingress-interface                    off                  Ingress interface
+      inner-destination-ip                 off                  Inner destination IPv4/IPv6 Address
+      inner-destination-port               off                  Inner TCP/UDP destination port
+      inner-ip-protocol                    off                  Inner IPv4 protocol field
+      inner-ipv6-label                     off                  Inner IPv6 label
+      inner-source-ip                      off                  Inner source IPv4/IPv6 Address
+      inner-source-port                    off                  Inner TCP/UDP source port
+      ip-protocol                          on                   IPV4 protocol field
+      ipv6-label                           on                   IPv6 label
+      source-ip                            on                   Source IPv4/IPv6 Address
+      source-port                          on                   TCP/UDP source port
+    lag-hash
+      destination-ip                       on                   Destination IPv4/IPv6 Address
+      destination-mac                      on                   Destination MAC Address
+      destination-port                     on                   TCP/UDP destination port
+      ether-type                           on                   Ethernet type
+      gtp-teid                             off                  GTP-U TEID
+      ip-protocol                          on                   IPv4 protocol field
+      source-ip                            on                   Source IPv4/IPv6 Address
+      source-mac                           on                   Source MAC Address
+      source-port                          on                   TCP/UDP source port
+      vlan                                 on                   Vlan
+  global
+    anycast-id                             none                 An integer (1-65535) to select rack MAC address in range 44:38:39:f...
+    anycast-mac                            none                 MAC address shared by the rack.
+    fabric-id                              1                    An integer (1-255) to select first hop router MAC adress in range 0...
+    fabric-mac                             none                 First hop router MAC address
+    system-mac                             auto                 full MAC address.
+    l3svd
+      enable                               off                  Turn the feature 'on' or 'off'.  The default is 'off'.
+    reserved
+      routing-table
+        pbr
+          begin                            10000                Beginning of reserved routing table range for PBR
+          end                              4294966272           End of reserved routing table range for PBR
+      vlan
+        l3-vni-vlan
+          begin                            4000                 Beginning of reserved vlan range for L3 VNI
+          end                              4064                 End of reserved vlan range for L3 VNI
+  port-mirror
+    [session]                                                   sessions
+  hostname                                 FXS-Spine-SN4600C-1  Static hostname for the switch
+  timezone                                 Asia/Taipei          system time zone
+[vrf]                                      default              VRFs
+[vrf]                                      mgmt
+cumulus@FXS-Spine-SN4600C-1:mgmt:~$ 
