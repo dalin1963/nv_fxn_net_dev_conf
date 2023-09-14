@@ -1,0 +1,14 @@
+# Defaults for isc-dhcp-relay6 initscript
+# sourced by /etc/init.d/isc-dhcp-relay6
+# installed at /etc/default/isc-dhcp-relay6 by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# Specify upstream and downstream interfaces
+# For example, "-u eth0 -l swp1"
+INTF_CMD=""
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""

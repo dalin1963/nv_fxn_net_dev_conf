@@ -1,0 +1,240 @@
+#
+# Based on examples in Mellanox documentation
+# https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-44/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/
+
+# -------------------------------------------------------
+# Mgmt physical port
+# Cannot be mixed with switch ports
+#
+
+# The primary network interface
+auto eth0
+allow-hotplug eth0
+iface eth0 inet manual
+    vrf mgmt
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+# ----------------------------------------------
+# vlan-aware bridge
+# By default, ports are tagged with VLANs 1
+# VLAN240 is to relay DHCP requests to DHCP server
+auto          br_default
+allow-hotplug br_default
+iface br_default
+    bridge-ports glob swp1-18 glob swp19-20 bond_up
+    bridge-pvid 1
+    bridge-vids 1
+    bridge-vlan-aware yes
+
+# -------------------------------------------------
+# Upstream ports to spine switches
+# Set ports for fixed 100G speeds ready for bonding
+# Cable type is AOC
+# Use MTU of 9216 on all ports
+auto          swp19 swp20 swp21 swp22
+allow-hotplug swp19 swp20 swp21 swp22
+
+#upstream
+iface swp22
+    link-autoneg off
+    link-duplex full
+    link-fec rs
+    link-speed 100000
+ 
+#upstream
+iface swp21
+    link-autoneg off
+    link-duplex full
+    link-fec rs
+    link-speed 100000
+ 
+
+iface swp20
+    bridge-access 1
+    link-autoneg on
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp19
+    bridge-access 1
+    link-autoneg on
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+# Create a bond for two upstream ports
+auto bond_up
+iface bond_up inet manual
+    bond-slaves swp22 swp21
+
+# ------------------------
+# Give VLAN240 IP address
+auto vlan240
+iface vlan240 inet dhcp
+    post-up sysctl -w net.ipv6.conf.vlan240.disable_ipv6=1
+    vlan-raw-device bond_up
+# ---------------------------------------------------
+# Give VLAN1 IP address
+auto vlan1
+allow-hotplug vlan1
+iface vlan1 inet dhcp
+    post-up sysctl -w net.ipv6.conf.vlan1.disable_ipv6=1
+    vlan-raw-device br_default
+# ------------------------
+auto          swp1 swp4 swp7 swp10 swp13 swp16
+auto          swp2 swp5 swp8 swp11 swp14 swp17
+auto          swp3 swp6 swp9 swp12 swp15 swp18
+allow-hotplug swp1 swp4 swp7 swp10 swp13 swp16
+allow-hotplug swp2 swp5 swp8 swp11 swp14 swp17
+allow-hotplug swp3 swp6 swp9 swp12 swp15 swp18
+
+iface swp18
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp17
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp16
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp15
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp14
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp13
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp12
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp11
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp10
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp9
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp8
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp7
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp6
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp5
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp4
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mtu 9216
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp3
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp2
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
+iface swp1
+    bridge-access 1
+    link-autoneg off
+    link-speed 10000
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portbpdufilter yes
+
